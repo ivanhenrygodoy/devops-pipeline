@@ -1,37 +1,37 @@
-# Use the official PHP image with Apache
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
-# Install system dependencies
+# Instala extensiones necesarias de PHP y herramientas básicas
 RUN apt-get update && apt-get install -y \
     git \
+    curl \
     unzip \
-    libzip-dev \
-    libpng-dev \
+    zip \
+    libpq-dev \
     libonig-dev \
     libxml2-dev \
-    && docker-php-ext-install pdo_mysql zip
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_pgsql mbstring zip
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+# Instala Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working directory
-WORKDIR /var/www/html
+# Establece el directorio de trabajo
+WORKDIR /var/www
 
-# Copy composer and install dependencies
-COPY --from=composer:2.5 /usr/bin/composer /usr/bin/composer
+# Copia archivos de dependencias primero
+COPY composer.json composer.lock ./
 
-# Copy existing application directory contents
-COPY . /var/www/html
-
-# Install PHP dependencies
+# Instala dependencias de PHP
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Set permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
+# Copia el resto del código
+COPY . .
 
-# Expose port 80
-EXPOSE 80
+# Asigna permisos
+RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
 
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
+# Expone el puerto (opcional)
+EXPOSE 9000
+
+# Comando de inicio (ajusta si usas Laravel Octane o similar)
+CMD ["php-fpm"]
