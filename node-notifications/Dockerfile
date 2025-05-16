@@ -1,20 +1,23 @@
-# Use official Node.js LTS image
+# Usa una imagen Node.js oficial completa
 FROM node:18
 
-# Set working directory
+# Crea el directorio de trabajo
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Muestra las versiones de Node y NPM (para debug)
+RUN node -v && npm -v
+
+# Copia archivos de dependencias
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --production
+# Instala todas las dependencias (evita --production por ahora)
+RUN npm install
 
-# Copy the rest of the application code
+# Copia el resto del código
 COPY . .
 
-# Expose port (change if your app uses a different port)
+# Expone el puerto que usa tu app (ajústalo si es diferente)
 EXPOSE 3000
 
-# Start the application
+# Comando de arranque
 CMD ["node", "src/index.js"]
