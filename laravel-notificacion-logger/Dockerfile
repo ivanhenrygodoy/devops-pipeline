@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libssl-dev \
     pkg-config \
-    && docker-php-ext-install pdo pdo_mysql zip
+    && docker-php-ext-install pdo pdo_pgsql zip
 
 # Instala la extensión de MongoDB para PHP
 RUN pecl install mongodb \
