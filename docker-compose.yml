@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  laravel:
+    image: ${DOCKER_USERNAME}/laravel-service:latest
+    container_name: laravel-app
+    restart: unless-stopped
+    env_file:
+      - ./laravel-service/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - mongo
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  node-notifications:
+    image: ${DOCKER_USERNAME}/node-notifications:latest
+    container_name: node-notifications
+    restart: unless-stopped
+    env_file:
+      - ./node-notifications/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - mongo
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: notifications
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:6
+    container_name: mongo-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - backend
+
+volumes:
+  pgdata:
+  mongodata:
+
+networks:
+  backend:
+    driver: bridge
