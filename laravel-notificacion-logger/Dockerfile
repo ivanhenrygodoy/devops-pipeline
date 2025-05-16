@@ -22,19 +22,23 @@ WORKDIR /var/www
 # Copia primero los archivos para instalar dependencias
 COPY composer.json composer.lock ./
 
-# Instala dependencias PHP
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader || cat /root/.composer/cache/logs/*.log
+# Información para debug
+RUN ls -la && php -v && composer --version
 
-# Copia el resto del código
+# Instala dependencias PHP con salida detallada
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
+
+# Copia el resto del código de la aplicación
 COPY . .
 
-# Establece permisos para Laravel
+# Establece permisos correctos para Laravel
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
 # Expone el puerto para PHP-FPM
 EXPOSE 9000
 
-# Comando por defecto
+# Comando por defecto para ejecutar PHP-FPM
 CMD ["php-fpm"]
+
 
