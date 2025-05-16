@@ -121,7 +121,7 @@ npm test
 
 ## Integración
 
-- El backend de Laravel se comunica con el microservicio Node.js para el envío y registro de notificaciones.
+- El backend de Laravel se comunica con el microservicio Node.js para el envío y registro de logs de acciones y errores.
 - Ambos servicios deben estar corriendo para el funcionamiento completo del sistema.
 
 ---
