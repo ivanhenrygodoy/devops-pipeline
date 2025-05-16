@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Generate .env file for Laravel
+      - name: Copy .env to Laravel for runtime
         run: |
           cat <<EOF > ./laravel-notificacion-logger/.env
           APP_NAME=Laravel
