@@ -16,14 +16,14 @@ github/workflows/ci.yml        # Configuración de CI
 
 ## laravel-notificacion-logger
 
-Aplicación principal construida con [Laravel](https://laravel.com/). Se encarga de la gestión de usuarios, lógica de negocio y registro de notificaciones.
+Aplicación principal construida con [Laravel](https://laravel.com/). Se encarga de la logica de notificaciones y guardado de logs de acciones y errores.
 
 ### Características
 
 - Framework Laravel 12.x
 - Soporte para MongoDB y PostgreSQL
 - Integración con microservicio Node.js para envío de notificaciones
-- Pruebas unitarias y de integración con PHPUnit
+- Pruebas unitarias
 
 ### Instalación
 
@@ -70,13 +70,12 @@ php artisan test
 
 ## 🚀 node-notifications
 
-Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/) para el envío y registro de notificaciones en PostgreSQL y MongoDB.
+Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/) para el envío de notificaciones y envio de logs al microservicio laravel-notificacion-logger.
 
 ### Características
 
 - API REST para recibir y enviar notificaciones
 - Conexión a PostgreSQL y MongoDB
-- Middleware de logging
 
 ### Instalación
 
