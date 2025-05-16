@@ -7,7 +7,7 @@ Este repositorio contiene dos proyectos principales que trabajan juntos para ges
 ## Arquitectura
 
 
-![Arquitectura del sistema](docs/img/arquitectura_devops.png)
+![Arquitectura del sistema](docs/img/arquitectura-devops.png)
 
 
 ## Estructura del repositorio
