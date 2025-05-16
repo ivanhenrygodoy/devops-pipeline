@@ -30,6 +30,31 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Generate .env file for Laravel
+        run: |
+          cat <<EOF > ./laravel-service/.env
+          APP_NAME=Laravel
+          APP_ENV=production
+          APP_KEY=
+          APP_DEBUG=false
+          APP_URL=http://localhost
+
+          LOG_CHANNEL=stack
+
+          DB_CONNECTION=pgsql
+          DB_HOST=db
+          DB_PORT=5432
+          DB_DATABASE=${{ secrets.DB_DATABASE }}
+          DB_USERNAME=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+
+          BROADCAST_DRIVER=log
+          CACHE_DRIVER=file
+          QUEUE_CONNECTION=sync
+          SESSION_DRIVER=file
+          SESSION_LIFETIME=120
+          EOF
+
       - name: Build and push Node.js image
         uses: docker/build-push-action@v5
         with:
