@@ -23,7 +23,7 @@ WORKDIR /var/www
 COPY composer.json composer.lock ./
 
 # Instala dependencias PHP
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader || cat /root/.composer/cache/logs/*.log
 
 # Copia el resto del código
 COPY . .
