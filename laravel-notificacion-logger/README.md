@@ -1,13 +1,12 @@
 # Laravel Notificación Logger
 
-Backend principal construido con [Laravel](https://laravel.com/) para la gestión de usuarios, lógica de negocio y registro de notificaciones.
+Backend principal construido con [Laravel](https://laravel.com/) para la gestión de envio de notificaciones y guardado de logs de acciones y errores.
 
 ## Características
 
 - Framework Laravel 12.x
 - Soporte para MongoDB y PostgreSQL
-- Integración con microservicio Node.js para envío de notificaciones
-- Pruebas unitarias y de integración con PHPUnit
+- Integración con microservicio Node.js para manejo de logs.
 - Almacenamiento de logs de acciones y errores tanto de el microservicio de node como del mismo en mongodb
 
 ## Instalación

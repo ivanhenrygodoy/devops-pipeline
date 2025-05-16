@@ -1,12 +1,15 @@
 # Node Notifications
 
-Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/) para el envío y registro de notificaciones en PostgreSQL y MongoDB.
+Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/) para el envío de notificaciones y envio de logs al microservicio de laravel-notification-logger.
+
+## Arquitectura
+![Arquitectura del sistema](docs/img/arquitectura-devops.png)
+
 
 ## Características
 
-- API REST para recibir y enviar notificaciones
+- API REST para enviar notificaciones
 - Conexión a PostgreSQL y MongoDB
-- Middleware de logging
 
 ## Instalación
 
