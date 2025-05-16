@@ -2,10 +2,6 @@
 
 Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/) para el envío de notificaciones y envio de logs al microservicio de laravel-notification-logger.
 
-## Arquitectura
-![Arquitectura del sistema](docs/img/arquitectura-devops.png)
-
-
 ## Características
 
 - API REST para enviar notificaciones

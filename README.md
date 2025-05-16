@@ -1,15 +1,42 @@
 # Pipeline DevOps: Laravel Notificación Logger & Node Notifications
 
-Este repositorio contiene dos proyectos principales que trabajan juntos para gestionar y registrar notificaciones: un backend en Laravel y un microservicio de notificaciones en Node.js.
+Este repositorio contiene dos proyectos principales que trabajan juntos para gestionar notificaciones: un backend en Laravel y un microservicio de notificaciones en Node.js.
 
 ---
+
+## Arquitectura
+
+
+![Arquitectura del sistema](docs/img/arquitectura_devops.png)
+
 
 ## Estructura del repositorio
 
 ```
-laravel-notificacion-logger/   # Backend principal en Laravel
-node-notifications/            # Microservicio de notificaciones en Node.js
-github/workflows/ci.yml        # Configuración de CI
+Pipeline_Devops/
+│
+├── node-notifications/ # Microservicio Node.js (servicio de notificaciones)
+│ ├── src/
+│ ├── tests/
+│ ├── Dockerfile
+│ ├── package.json
+│ └── ...
+│
+├── laravel-service/ # Microservicio PHP-Laravel
+│ ├── app/
+│ ├── tests/
+│ ├── Dockerfile
+│ ├── composer.json
+│ └── ...
+│
+├── docs/
+│ └── img/
+│ └── arquitectura.png # Imagen que quieras agregar
+├── docker-compose.yml # Orquestador de ambos servicios
+├── .github/
+│ └── workflows/
+│ └── ci.yml # Pipeline GitHub Actions
+└── README.md
 ```
 
 ---
@@ -68,7 +95,7 @@ php artisan test
 
 ---
 
-## 🚀 node-notifications
+## node-notifications
 
 Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://expressjs.com/) para el envío de notificaciones y envio de logs al microservicio laravel-notificacion-logger.
 
