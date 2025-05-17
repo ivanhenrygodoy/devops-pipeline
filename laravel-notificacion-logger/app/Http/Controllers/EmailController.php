@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\NotificationEmail;
 use App\Models\mongo\ActionLog;
 use App\Models\mongo\ErrorLog;
+use App\Mail\NotificationEmail;
 
 class EmailController extends Controller
 {
@@ -20,7 +20,7 @@ class EmailController extends Controller
 
         try {
             Mail::to($request->input('user.email'))->send(
-                new \App\Mail\NotificationEmail(
+                new NotificationEmail(
                     $request->input('user'),
                     $request->input('message')
                 )
