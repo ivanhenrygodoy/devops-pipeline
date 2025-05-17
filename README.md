@@ -2,16 +2,6 @@
 
 Este repositorio contiene dos proyectos principales que trabajan juntos para gestionar notificaciones: un backend en Laravel y un microservicio de notificaciones en Node.js.
 
----
-
-## Arquitectura
-
-
-```
-
-```
-
----
 
 ## laravel-notificacion-logger
 
