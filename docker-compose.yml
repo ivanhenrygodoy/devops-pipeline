@@ -2,13 +2,14 @@ version: '3.8'
 
 services:
   laravel:
-    image: ${DOCKER_USERNAME}/laravel-service:latest
+    image: ${DOCKER_USERNAME}/laravel-notificacion-logger:latest
     container_name: laravel-app
     restart: unless-stopped
     env_file:
       - ./laravel-notificacion-logger/.env
     ports:
       - "8000:8000"
+      - "8001:80"
     depends_on:
       - postgres
       - mongo
