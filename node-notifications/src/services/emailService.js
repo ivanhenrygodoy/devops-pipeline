@@ -15,7 +15,7 @@ async function sendNotificationEmail(userEmail, message) {
   const mailOptions = {
     from: `"Notificaciones DevOps" <${process.env.EMAIL_USER}>`,
     to: userEmail,
-    subject: 'Notificación desde el Microservicio',
+    subject: 'Notificación desde el Microservicio Nodejs',
     text: message,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: #f9f9f9;">
