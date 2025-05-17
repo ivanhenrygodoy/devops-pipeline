@@ -4,6 +4,43 @@ Este repositorio contiene dos proyectos principales que trabajan juntos para ges
 
 ---
 
+## Arquitectura
+
+
+![Arquitectura del sistema](docs/img/arquitectura-devops.png)
+
+
+## Estructura del repositorio
+
+```
+Pipeline_Devops/
+│
+├── node-notifications/ # Microservicio Node.js (servicio de notificaciones)
+│ ├── src/
+│ ├── tests/
+│ ├── Dockerfile
+│ ├── package.json
+│ └── ...
+│
+├── laravel-service/ # Microservicio PHP-Laravel
+│ ├── app/
+│ ├── tests/
+│ ├── Dockerfile
+│ ├── composer.json
+│ └── ...
+│
+├── docs/
+│ └── img/
+│ └── arquitectura.png # Imagen que quieras agregar
+├── docker-compose.yml # Orquestador de ambos servicios
+├── .github/
+│ └── workflows/
+│ └── ci.yml # Pipeline GitHub Actions
+└── README.md
+```
+
+---
+
 ## laravel-notificacion-logger
 
 Aplicación principal construida con [Laravel](https://laravel.com/). Se encarga de la logica de notificaciones y guardado de logs de acciones y errores.
