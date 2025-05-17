@@ -5,10 +5,11 @@ const notificationRoutes = require('./routes/notificationRoutes');
 const logger = require('./middlewares/logger');
 const sequelize = require('../bd/postgres');
 const mongoose = require('mongoose');
+const apiRoutes = require('./routes/api');
 
 app.use(logger);
 app.use(express.json());
-app.use('/notify', notificationRoutes);
+app.use('/api', apiRoutes);
 
 const PORT = process.env.PORT || 3001;
 
