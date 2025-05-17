@@ -15,7 +15,7 @@ jobs:
     env:
       REGISTRY: docker.io
       IMAGE_NODE: ${{ secrets.DOCKER_USERNAME }}/node-notifications
-      IMAGE_LARAVEL: ${{ secrets.DOCKER_USERNAME }}/laravel-service
+      IMAGE_LARAVEL: ${{ secrets.DOCKER_USERNAME }}/laravel-notificacion-logger
 
     steps:
       - name: Checkout code
