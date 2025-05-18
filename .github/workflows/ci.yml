@@ -64,7 +64,7 @@ jobs:
           DB_USER=${{ secrets.DB_USERNAME }}
           DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           DB_NAME=${{ secrets.DB_DATABASE }}
-          MONGO_URL=mongodb://mongo:27017
+          MONGO_URI=mongodb://mongo:27017
           EOF
 
       - name: Build and push Node.js image
