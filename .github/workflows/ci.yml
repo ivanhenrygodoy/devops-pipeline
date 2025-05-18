@@ -42,7 +42,7 @@ jobs:
           LOG_CHANNEL=stack
 
           DB_CONNECTION=pgsql
-          DB_HOST=db
+          DB_HOST=postgres
           DB_PORT=5432
           DB_DATABASE=${{ secrets.DB_DATABASE }}
           DB_USERNAME=${{ secrets.DB_USERNAME }}
@@ -53,6 +53,18 @@ jobs:
           QUEUE_CONNECTION=sync
           SESSION_DRIVER=file
           SESSION_LIFETIME=120
+          EOF
+
+      - name: Copy .env to Node.js for runtime
+        run: |
+          cat <<EOF > ./node-notifications/.env
+          PORT=3001
+          DB_HOST=postgres
+          DB_PORT=5432
+          DB_USER=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          DB_NAME=${{ secrets.DB_DATABASE }}
+          MONGO_URL=mongodb://mongo:27017
           EOF
 
       - name: Build and push Node.js image
