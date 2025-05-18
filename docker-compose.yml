@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   laravel:
-    image: ${DOCKER_USERNAME}/laravel-notificacion-logger:latest
+    image: ${IMAGE_LARAVEL:-henrydevops/laravel-notificacion-logger}:latest
     container_name: laravel-app
     restart: unless-stopped
     env_file:
@@ -22,7 +22,7 @@ services:
       retries: 5
 
   node-notifications:
-    image: ${DOCKER_USERNAME}/node-notifications:latest
+    image: ${IMAGE_NODE:-henrydevops/node-notifications}:latest
     container_name: node-notifications
     restart: unless-stopped
     env_file:
