@@ -10,14 +10,14 @@ RUN node -v && npm -v
 # Copia archivos de dependencias
 COPY package*.json ./
 
-# Instala todas las dependencias (evita --production por ahora)
+# Instala todas las dependencias
 RUN npm install
 
 # Copia el resto del código
 COPY . .
 
-# Expone el puerto que usa tu app (ajústalo si es diferente)
+# Expone el puerto que usa tu app
 EXPOSE 3000
 
-# Comando de arranque
+# Comando de arranque para iniciar el servidor de Node.js
 CMD ["node", "src/index.js"]
