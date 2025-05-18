@@ -38,6 +38,6 @@ RUN chown -R www-data:www-data /var/www \
 # Expone el puerto para PHP-FPM
 EXPOSE 9000
 
-# Comando por defecto
+# Comando por defecto para iniciar el servidor de PHP-FPM
 CMD ["php-fpm"]
 
