@@ -4,7 +4,7 @@
 
 ## 🏗️ Arquitectura
 
-Este sistema está diseñado como un monorepo que combina dos microservicios:
+Este sistema está diseñado como un monorepo que combina las funcionalidades dedos microservicios:
 
 1. **Backend Laravel** (`laravel-notificacion-logger`)
    - Se encarga del manejo de notificaciones vía correo electrónico y almacena logs de acciones errores.
