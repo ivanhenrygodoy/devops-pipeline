@@ -39,5 +39,5 @@ RUN chown -R www-data:www-data /var/www \
 EXPOSE 8000
 
 # Comando por defecto para iniciar el servidor de PHP-FPM
-CMD ["php", "arisan", "serve", "--host=0.0.0.0'", "--port=8000"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0'", "--port=8000"]
 
