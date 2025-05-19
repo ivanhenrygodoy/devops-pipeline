@@ -36,8 +36,8 @@ RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
 # Expone el puerto para PHP-FPM
-EXPOSE 9000
+EXPOSE 8000
 
 # Comando por defecto para iniciar el servidor de PHP-FPM
-CMD ["php-fpm"]
+CMD ["php", "arisan", "serve", "--host=0.0.0.0'", "--port=8000"]
 
