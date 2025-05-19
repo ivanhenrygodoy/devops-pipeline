@@ -1,4 +1,3 @@
-
 services:
   laravel:
     image: ${IMAGE_LARAVEL:-ivandev284/laravel-notificacion-logger}:latest
@@ -9,6 +8,8 @@ services:
     ports:
       - "8030:8000"
       - "8001:80"
+    volumes:
+      - ./laravel-notificacion-logger:/var/www
     depends_on:
       - postgres
       - mongo
