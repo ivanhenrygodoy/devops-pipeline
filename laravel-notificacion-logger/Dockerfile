@@ -1,23 +1,35 @@
 # Imagen base con PHP 8.2 y FPM
 FROM php:8.2-fpm
 
-# Instala dependencias del sistema necesarias
+# Instala Apache y otras dependencias necesarias
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    zip \
-    unzip \
+    libpng-dev \
     libonig-dev \
     libxml2-dev \
-    libzip-dev \
-    libpq-dev \
-    libssl-dev \
-    pkg-config \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    zip \
+    unzip \
+    apache2 \
+    libapache2-mod-fcgid \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd \
+    && docker-php-ext-configure gd \
+    && docker-php-ext-install gd
 
 # Instala la extensión de MongoDB para PHP
 RUN pecl install mongodb \
     && docker-php-ext-enable mongodb
+
+# Configura Apache para Laravel
+RUN a2enmod proxy proxy_fcgi rewrite
+RUN mv /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.backup
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+RUN a2ensite 000-default.conf
+RUN a2enmod rewrite
+
+# Configura PHP-FPM
+RUN echo "ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/public/$1" > /etc/apache2/conf-available/php-fpm.conf
+RUN a2enconf php-fpm
 
 # Copia Composer desde la imagen oficial
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -28,6 +40,9 @@ WORKDIR /var/www
 # Copia TODO el código fuente de Laravel
 COPY . .
 
+# Configura el DocumentRoot de Apache
+RUN sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-default.conf.backup
+
 # Corre Composer ahora que artisan ya está presente
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 
@@ -35,9 +50,9 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verb
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
-# Expone el puerto para PHP-FPM
-EXPOSE 8000
+# Expone los puertos necesarios
+EXPOSE 80
+EXPOSE 9000
 
-# Comando por defecto para iniciar el servidor de PHP-FPM
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
-
+# Comando por defecto para iniciar Apache y PHP-FPM
+CMD service apache2 start && php-fpm
