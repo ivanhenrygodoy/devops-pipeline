@@ -10,6 +10,8 @@ Este sistema está diseñado como un monorepo que combina las funcionalidades de
    - Se encarga del manejo de notificaciones vía correo electrónico y almacena logs de acciones errores.
    - Utiliza MongoDB y PostgreSQL como bases de datos.
    - Provee una API REST para la gestión de notificaciones.
+   - Utiliza Apache como servidor web para la gestión de las peticiones.
+   - Utiliza PHP-FPM para la gestión de las peticiones.
 
 2. **Servicio de Notificaciones** (`node-notifications`)
    - Maneja el envío de notificaciones por correo electrónico.
@@ -171,9 +173,45 @@ Para más detalles sobre la configuración y uso del microservicio Node.js, cons
 - El backend de Laravel se comunica con el microservicio Node.js para la recepción y registro de logs de acciones y errores en MongoDB.
 - Ambos servicios deben estar corriendo para el funcionamiento completo del sistema.
 
+
+
 ## 🔄 CI/CD
 
-El repositorio incluye un flujo de trabajo de GitHub Actions en `github/workflows/ci.yml` para integración continua.
+Este proyecto utiliza GitHub Actions para automatizar el proceso de desarrollo y despliegue, separando claramente las responsabilidades:
+
+1. **Desarrollo**
+   - Desarrolladores se enfocan en escribir código
+   - Pruebas unitarias validan la funcionalidad
+   - Linting y formateo mantienen la calidad del código
+
+2. **Infraestructura**
+   - Construcción automática de imágenes Docker
+   - Optimización de imágenes para producción
+   - Escaneo de vulnerabilidades de seguridad
+
+3. **Operaciones**
+   - Despliegue automático a Docker Hub
+   - Actualización de imágenes en producción
+   - Rollback automático en caso de fallos
+
+4. **Monitoreo**
+   - Métricas de construcción y rendimiento
+   - Alertas automáticas de fallos
+   - Reportes de rendimiento del sistema
+
+El flujo de trabajo está definido en `github/workflows/ci.yml` y se ejecuta automáticamente en estos casos:
+- Push a `main`: Despliegue a producción
+- Push a `develop`: Construcción y pruebas
+- Pull Requests: Ejecución de pruebas
+- Tags: Creación de versiones
+
+Esta separación de responsabilidades permite:
+- Desarrolladores se enfocan en el código
+- Infraestructura es gestionada de forma automática
+- Operaciones son más eficientes y consistentes
+- Monitoreo constante del sistema
+
+El proceso garantiza la calidad y seguridad del código en todo momento.
 
 ## 📈 Convenciones de Desarrollo
 
