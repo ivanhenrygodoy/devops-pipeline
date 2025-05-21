@@ -9,6 +9,11 @@ Microservicio principal construido con Laravel para la gestión de notificacione
 - 🔄 Integración con microservicio Node.js
 - 🔐 Soporte para múltiples bases de datos (MongoDB y PostgreSQL)
 - 🛠️ Sistema completo de pruebas unitarias
+- 📦 Sistema de despliegue automático con GitHub Actions.
+- 📦 Utiliza apache como servidor web.
+- 📦 Utiliza php-fpm para la gestion de peticiones.
+- 📦 Utiliza Laravel Mail para enviar notificaciones vía correo electrónico.
+
 
 ## 📁 Estructura del Proyecto
 
