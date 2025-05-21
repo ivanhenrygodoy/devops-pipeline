@@ -8,6 +8,9 @@ Microservicio construido en [Node.js](https://nodejs.org/) y [Express](https://e
 - 🔄 Conexión a PostgreSQL y MongoDB
 - 🔐 Sistema completo de pruebas unitarias
 - 📦 Integración con Laravel Notificación Logger
+- 📦 Utiliza axios para enviar logs al microservicio de laravel-notification-logger
+- 📦 Utiliza nodemailer para enviar notificaciones vía correo electrónico.
+- 📦 Sistema de despliegue automático con GitHub Actions.
 
 
 ## 📁 Estructura de carpetas
