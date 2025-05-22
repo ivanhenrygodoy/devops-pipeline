@@ -179,25 +179,12 @@ Para más detalles sobre la configuración y uso del microservicio Node.js, cons
 
 Este proyecto utiliza GitHub Actions para automatizar el proceso de desarrollo y despliegue, separando claramente las responsabilidades:
 
-1. **Desarrollo**
-   - Desarrolladores se enfocan en escribir código
-   - Pruebas unitarias validan la funcionalidad
-   - Linting y formateo mantienen la calidad del código
+Esta separación de responsabilidades permite:
+- Desarrolladores se enfocan en el código
+- Infraestructura es gestionada de forma automática
+- Operaciones son más eficientes y consistentes
+- Monitoreo constante del sistema
 
-2. **Infraestructura**
-   - Construcción automática de imágenes Docker
-   - Optimización de imágenes para producción
-   - Escaneo de vulnerabilidades de seguridad
-
-3. **Operaciones**
-   - Despliegue automático a Docker Hub
-   - Actualización de imágenes en producción
-   - Rollback automático en caso de fallos
-
-4. **Monitoreo**
-   - Métricas de construcción y rendimiento
-   - Alertas automáticas de fallos
-   - Reportes de rendimiento del sistema
 
 El flujo de trabajo está definido en `github/workflows/ci.yml` y se ejecuta automáticamente en estos casos:
 - Push a `main`: Despliegue a producción
@@ -205,11 +192,6 @@ El flujo de trabajo está definido en `github/workflows/ci.yml` y se ejecuta aut
 - Pull Requests: Ejecución de pruebas
 - Tags: Creación de versiones
 
-Esta separación de responsabilidades permite:
-- Desarrolladores se enfocan en el código
-- Infraestructura es gestionada de forma automática
-- Operaciones son más eficientes y consistentes
-- Monitoreo constante del sistema
 
 El proceso garantiza la calidad y seguridad del código en todo momento.
 
@@ -238,6 +220,14 @@ docs: actualización de documentación
 style: cambios de estilo
 chore: tareas de mantenimiento
 test: actualización de tests
+```
+
+A continuación se muestran ejemplos basicos de commits:
+
+```bash
+feat(readme):agrega documentación del readme raíz del proyecto
+fix(notificacionController):corrije error en función de envio de notificaciones
+refactor(docker-compose.yml):refactoriza archivo docker-compose.yml
 ```
 
 ## 📄 SBOM
