@@ -21,7 +21,7 @@ class NotificationEmail extends Mailable
 
     public function build()
     {
-        return $this->subject('Notificación desde el Microservicio')
+        return $this->subject('Notificación desde el Microservicio Laravel')
                     ->view('emails.notification');
     }
 }
