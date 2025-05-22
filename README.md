@@ -226,7 +226,7 @@ A continuación se muestran ejemplos basicos de commits:
 
 ```bash
 feat(readme):agrega documentación del readme raíz del proyecto
-fix(notificacionController):corrije error en función de envio de notificaciones
+fix(notificacionController):corrige error en función de envio de notificaciones
 refactor(docker-compose.yml):refactoriza archivo docker-compose.yml
 ```
 
