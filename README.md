@@ -76,7 +76,12 @@ Pipeline_Devops/
 │   └── workflows/
 │       └── ci.yml
 │
+├── .husky/                          # Hooks de Git para validación de commits
+│   └── commit-msg                   # Hook para validar mensajes de commit
+├── .commitlintrc.json               # Configuración de validación de commits
 ├── docker-compose.yml
+├── package.json                     # Dependencias del proyecto
+├── .gitignore                       # Archivos ignorados por Git
 └── README.md
 ```
 
@@ -209,7 +214,21 @@ Este repositorio utiliza la estrategia **Git Flow** para la gestión de ramas:
 
 ### Conventional Commits
 
-Se utiliza el estándar [Conventional Commits](https://www.conventionalcommits.org/) para los mensajes de commit:
+Este proyecto utiliza el estándar [Conventional Commits](https://www.conventionalcommits.org/) para los mensajes de commit. Para usarlo, necesitas:
+
+1. Instalar las dependencias de desarrollo:
+
+```bash
+npm install
+```
+
+**Nota**: Al ejecutar `npm install`, Husky configurará automáticamente la carpeta `.husky` con los hooks necesarios para validar los mensajes de commit.
+
+2. La configuración incluye:
+   - **Commitlint**: Validación automática de mensajes de commit
+   - **Husky**: Hooks de Git para asegurar el formato correcto
+
+Los tipos de commits disponibles son:
 
 ```bash
 feat: nueva funcionalidad
@@ -222,12 +241,12 @@ chore: tareas de mantenimiento
 test: actualización de tests
 ```
 
-A continuación se muestran ejemplos basicos de commits:
+Ejemplos de commits:
 
 ```bash
-feat(readme):agrega documentación del readme raíz del proyecto
-fix(notificacionController):corrige error en función de envio de notificaciones
-refactor(docker-compose.yml):refactoriza archivo docker-compose.yml
+feat(readme): agrega documentación del readme raíz del proyecto
+fix(notificacionController): corrige error en función de envío de notificaciones
+refactor(docker-compose.yml): refactoriza archivo docker-compose.yml
 ```
 
 ## 📄 SBOM
