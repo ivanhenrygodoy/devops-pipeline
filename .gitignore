@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Husky
+.husky/
+.huskyrc
+.huskyrc.json
+.huskyrc.js
+.huskyrc.cjs
+.huskyrc.mjs
