@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     apache2 \
     libapache2-mod-fcgid \
-    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd pdo_pgsql pgsql \
     && docker-php-ext-configure gd \
     && docker-php-ext-install gd
 
@@ -46,9 +47,20 @@ RUN sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-
 # Corre Composer ahora que artisan ya está presente
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verbose
 
+# Genera la clave de la aplicación
+RUN php artisan key:generate
+
+# Configura las rutas y caché
+RUN php artisan route:cache && \
+    php artisan config:cache && \
+    php artisan view:cache
+
 # Establece permisos correctos
 RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www/storage
+    && chmod -R 755 /var/www/storage \
+    && chmod -R 775 /var/www/storage \
+    && chmod -R 775 /var/www/bootstrap/cache \
+    && chmod -R 755 /var/www/public
 
 # Expone los puertos necesarios
 EXPOSE 80
