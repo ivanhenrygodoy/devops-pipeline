@@ -16,7 +16,7 @@
         </blockquote>
         <p>Gracias por usar nuestro servicio.</p>
         <footer style="text-align: center; font-size: 12px; color: #aaa; margin-top: 20px;">
-            © {{ date('Y') }} Laravel Service | Notificaciones automatizadas
+            © {{ date('Y') }} DevOps Microservicios | Notificaciones automatizadas
         </footer>
     </div>
 </body>

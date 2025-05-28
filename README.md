@@ -247,6 +247,8 @@ Ejemplos de commits:
 feat(readme): agrega documentación del readme raíz del proyecto
 fix(notificacionController): corrige error en función de envío de notificaciones
 refactor(docker-compose.yml): refactoriza archivo docker-compose.yml
+chore(docker-compose.yml): agrega volumes para desarrollo
+docs(docker-compose.yml): agrega documentación de docker-compose.yml
 ```
 
 ## 📄 SBOM
