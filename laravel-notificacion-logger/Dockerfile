@@ -50,10 +50,12 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --verb
 # Genera la clave de la aplicación
 RUN php artisan key:generate
 
-# Configura las rutas y caché
-RUN php artisan route:cache && \
-    php artisan config:cache && \
-    php artisan view:cache
+# Limpiar caché y recargar rutas
+RUN php artisan config:clear && \
+    php artisan route:clear && \
+    php artisan view:clear && \
+    php artisan route:cache && \
+    php artisan config:cache
 
 # Establece permisos correctos
 RUN chown -R www-data:www-data /var/www \
